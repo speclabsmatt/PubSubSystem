@@ -1,4 +1,4 @@
-# PubSubSystem by Ayu
+# PubSub System by Ayu
 To run this Publish Subscriber system, you must run 3 individual components:
 1. Run PubSub Broker/Broker.cs (Launches Broker server)
 2. Run PubSub Publisher/Publisher.cs (Each Publisher.cs instance is a singular publisher)
