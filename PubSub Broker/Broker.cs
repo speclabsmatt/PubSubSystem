@@ -10,6 +10,7 @@ using System.Collections;
 using System.Diagnostics.Contracts;
 using System.Runtime.InteropServices;
 using PubSubCommon;
+using System.Net.Http;
 
 namespace PubSub_Broker
 {
@@ -53,7 +54,7 @@ namespace PubSub_Broker
             var stream = client.GetStream();
             var clientType = await stream.ReadStringAsync();
 
-            Console.WriteLine($"connected: {client.Client.RemoteEndPoint} - {clientType}");
+            Console.WriteLine($"Connected: {client.Client.RemoteEndPoint} - {clientType}");
 
             switch (clientType)
             {
@@ -76,6 +77,13 @@ namespace PubSub_Broker
             
             var topic = await stream.ReadStringAsync();
 
+            while(GetAvailableTopics().Contains(topic))
+            {
+                await stream.WriteStringAsync("That topic already exists. Please choose a different topic: ");
+
+                topic = await stream.ReadStringAsync();
+            }
+
             await stream.WriteStringAsync("All further messages will now be published to the \"" + topic + "\" topic." +
                 "\nType /quit to exit.");
 
@@ -90,7 +98,18 @@ namespace PubSub_Broker
             while (client.Connected)
             {
                 var message = await stream.ReadStringAsync();
-                Console.WriteLine("Received publisher message: " + message);
+                if (message.Length < 1) continue;
+                Console.WriteLine($"Publisher {client.Client.RemoteEndPoint}: " + message);
+
+                if(message.Equals(prefix + "quit"))
+                {
+
+                    stream.Close();
+                    client.Close();
+                    continue;
+
+                }
+
                 foreach (var sub in SUBSCRIBERS)
                 {
                     if (sub.IsSubscribedToTopic(publisher.GetTopic()))
@@ -99,14 +118,19 @@ namespace PubSub_Broker
             }
 
             PUBLISHERS.Remove(publisher);
+
+            SUBSCRIBERS.ForEach(subscriber =>
+            {
+                if (subscriber.IsSubscribedToTopic(publisher.GetTopic()))
+                    subscriber.UnsubscribeFromTopic(publisher.GetTopic());
+            });
         }
 
         private static async void AcceptNewSubscriber(TcpClient client)
         {
             NetworkStream stream = client.GetStream();
-            await stream.WriteStringAsync("Type /help for a list of commands.");
-
-            await stream.WriteStringAsync("Type /quit to exit.");
+            await stream.WriteStringAsync("Type " + prefix + "help for a list of commands." +
+                "\nType " + prefix + "quit to exit.");
 
             HandleSubscriber(new Subscriber(client));
         }
@@ -120,11 +144,16 @@ namespace PubSub_Broker
             {
 
                 var command = await stream.ReadStringAsync();
-                Console.WriteLine("Received subscriber message: " + command);
+                if (command.Length < 1) continue;
+                Console.WriteLine($"Subscriber {client.Client.RemoteEndPoint}: " + command);
 
                 string[] cmd = command.Split(" ", 2);
 
-                if (!cmd[0].StartsWith(prefix)) continue;
+                if (!cmd[0].StartsWith(prefix))
+                {
+                    await subscriber.SendMessageAsync("Type " + prefix + "help for a list of commands.");
+                    continue;
+                }
                 cmd[0] = cmd[0].Substring(prefix.Length);
                 switch (cmd[0])
                 {
@@ -139,12 +168,18 @@ namespace PubSub_Broker
                         if(!GetAvailableTopics().Contains(cmd[1]))
                         {
                             await subscriber.SendMessageAsync("That is not an available topic to subscribe to." +
-                                "\nType " + prefix + "help for a list of commands.");
+                                "\nType " + prefix + "alltopics to see a list of available topics to subscribe to.");
+                            continue;
+                        }
+                        if(subscriber.IsSubscribedToTopic(cmd[1]))
+                        {
+                            await subscriber.SendMessageAsync("You are already subscribed to that topic.");
                             continue;
                         }
                         subscriber.SubscribeToTopic(cmd[1]);
-                        await subscriber.SendMessageAsync("You have subscribed to topic " + cmd[1]);
+                        await subscriber.SendMessageAsync("You have subscribed to topic \"" + cmd[1] + "\"");
                         continue;
+
                     case "unsubscribe":
                     case "unsub":
                         if (cmd.Length < 2)
@@ -156,36 +191,44 @@ namespace PubSub_Broker
                         if (!subscriber.GetSubscribedTopics().Contains(cmd[1]))
                         {
                             await subscriber.SendMessageAsync("You are not subscribed to that topic." +
-                                "\nType " + prefix + "help for a list of commands.");
+                                "\nType " + prefix + "subscribedtopics to see a list of your currently subscribed topics.");
                             continue;
                         }
                         subscriber.UnsubscribeFromTopic(cmd[1]);
-                        await subscriber.SendMessageAsync("You have unsubscribed from topic " + cmd[1]);
+                        await subscriber.SendMessageAsync("You have unsubscribed from topic \"" + cmd[1] + "\"");
                         continue;
+
                     case "subscribedtopics":
                         await subscriber.SendMessageAsync("Currently subscribed topics: "
                             + GetCommaSeparatedString(subscriber.GetSubscribedTopics()));
                         continue;
+
                     case "alltopics":
+                    case "topics":
                         await subscriber.SendMessageAsync("Currently available topics: " 
                             + GetCommaSeparatedString(GetAvailableTopics()));
                         continue;
+
                     case "help":
                         if (cmd.Length == 1)
                         {
                             await subscriber.SendMessageAsync("Available Commands: "
                                 + prefix + "subscribe <topic>, "
                                 + prefix + "unsubscribe <topic>, "
-                                + prefix + "subscribedtopics, and "
-                                + prefix + "alltopics");
+                                + prefix + "subscribedtopics, "
+                                + prefix + "alltopics, and "
+                                + prefix + "quit");
                         }
                         continue;
+
+                    case "quit":
+                        stream.Close();
+                        client.Close();
+                        continue;
+
                     default:
-                        await subscriber.SendMessageAsync("Available Commands: "
-                                + prefix + "subscribe <topic>, "
-                                + prefix + "unsubscribe <topic>, "
-                                + prefix + "subscribedtopics, and "
-                                + prefix + "alltopics");
+                        await subscriber.SendMessageAsync("That is not a valid command. " +
+                            "Type " + prefix + "help for a list of commands.");
                         continue;
                 }
             

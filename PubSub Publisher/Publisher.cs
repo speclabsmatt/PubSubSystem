@@ -20,7 +20,7 @@ namespace PubSub_Publisher
                 Int32 port = 9999;
                 TcpClient client = new TcpClient("127.0.0.1", port);
 
-                Console.WriteLine($"publisher: {client.Client.LocalEndPoint}");
+                Console.WriteLine($"Publisher: {client.Client.LocalEndPoint}");
 
                 string message = "CONNECTION-PUBLISHER";
 
@@ -37,8 +37,7 @@ namespace PubSub_Publisher
                     input = Console.ReadLine();
                 }
 
-                stream.Close();
-                client.Close();
+                await stream.WriteStringAsync(input);
 
             }
             catch (ArgumentNullException e)
