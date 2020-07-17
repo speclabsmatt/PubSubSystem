@@ -11,3 +11,6 @@ C:\Users\Matt\Documents\GitHub\PubSub\PubSub Broker\bin\Debug\netcoreapp3.1\PubS
 C:\Users\Matt\Documents\GitHub\PubSub\PubSub Broker\obj\Debug\netcoreapp3.1\PubSub Broker.dll
 C:\Users\Matt\Documents\GitHub\PubSub\PubSub Broker\obj\Debug\netcoreapp3.1\PubSub Broker.pdb
 C:\Users\Matt\Documents\GitHub\PubSub\PubSub Broker\obj\Debug\netcoreapp3.1\PubSub Broker.genruntimeconfig.cache
+C:\Users\Matt\Documents\GitHub\PubSub\PubSub Broker\bin\Debug\netcoreapp3.1\PubSubCommon.dll
+C:\Users\Matt\Documents\GitHub\PubSub\PubSub Broker\bin\Debug\netcoreapp3.1\PubSubCommon.pdb
+C:\Users\Matt\Documents\GitHub\PubSub\PubSub Broker\obj\Debug\netcoreapp3.1\PubSub Broker.csproj.CopyComplete

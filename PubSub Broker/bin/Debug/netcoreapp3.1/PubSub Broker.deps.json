@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v3.1": {
       "PubSub Broker/1.0.0": {
+        "dependencies": {
+          "PubSubCommon": "1.0.0"
+        },
         "runtime": {
           "PubSub Broker.dll": {}
+        }
+      },
+      "PubSubCommon/1.0.0": {
+        "runtime": {
+          "PubSubCommon.dll": {}
         }
       }
     }
   },
   "libraries": {
     "PubSub Broker/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PubSubCommon/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

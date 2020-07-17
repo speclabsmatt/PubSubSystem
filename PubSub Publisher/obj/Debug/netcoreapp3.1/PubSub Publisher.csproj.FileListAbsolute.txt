@@ -1,0 +1,16 @@
+C:\Users\Matt\Documents\GitHub\PubSub\PubSub Publisher\bin\Debug\netcoreapp3.1\PubSub Publisher.exe
+C:\Users\Matt\Documents\GitHub\PubSub\PubSub Publisher\bin\Debug\netcoreapp3.1\PubSub Publisher.deps.json
+C:\Users\Matt\Documents\GitHub\PubSub\PubSub Publisher\bin\Debug\netcoreapp3.1\PubSub Publisher.runtimeconfig.json
+C:\Users\Matt\Documents\GitHub\PubSub\PubSub Publisher\bin\Debug\netcoreapp3.1\PubSub Publisher.runtimeconfig.dev.json
+C:\Users\Matt\Documents\GitHub\PubSub\PubSub Publisher\bin\Debug\netcoreapp3.1\PubSub Publisher.dll
+C:\Users\Matt\Documents\GitHub\PubSub\PubSub Publisher\bin\Debug\netcoreapp3.1\PubSub Publisher.pdb
+C:\Users\Matt\Documents\GitHub\PubSub\PubSub Publisher\obj\Debug\netcoreapp3.1\PubSub Publisher.csprojAssemblyReference.cache
+C:\Users\Matt\Documents\GitHub\PubSub\PubSub Publisher\obj\Debug\netcoreapp3.1\PubSub Publisher.AssemblyInfoInputs.cache
+C:\Users\Matt\Documents\GitHub\PubSub\PubSub Publisher\obj\Debug\netcoreapp3.1\PubSub Publisher.AssemblyInfo.cs
+C:\Users\Matt\Documents\GitHub\PubSub\PubSub Publisher\obj\Debug\netcoreapp3.1\PubSub Publisher.csproj.CoreCompileInputs.cache
+C:\Users\Matt\Documents\GitHub\PubSub\PubSub Publisher\obj\Debug\netcoreapp3.1\PubSub Publisher.dll
+C:\Users\Matt\Documents\GitHub\PubSub\PubSub Publisher\obj\Debug\netcoreapp3.1\PubSub Publisher.pdb
+C:\Users\Matt\Documents\GitHub\PubSub\PubSub Publisher\obj\Debug\netcoreapp3.1\PubSub Publisher.genruntimeconfig.cache
+C:\Users\Matt\Documents\GitHub\PubSub\PubSub Publisher\bin\Debug\netcoreapp3.1\PubSubCommon.dll
+C:\Users\Matt\Documents\GitHub\PubSub\PubSub Publisher\bin\Debug\netcoreapp3.1\PubSubCommon.pdb
+C:\Users\Matt\Documents\GitHub\PubSub\PubSub Publisher\obj\Debug\netcoreapp3.1\PubSub Publisher.csproj.CopyComplete

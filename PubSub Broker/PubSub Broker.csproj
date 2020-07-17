@@ -6,4 +6,8 @@
     <RootNamespace>PubSub_Broker</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PubSubCommon\PubSubCommon.csproj" />
+  </ItemGroup>
+
 </Project>
