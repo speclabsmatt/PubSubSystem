@@ -1,9 +1,0 @@
-C:\Users\Matt\Documents\GitHub\PubSub\PubSubCommon\bin\Debug\netstandard2.0\PubSubCommon.deps.json
-C:\Users\Matt\Documents\GitHub\PubSub\PubSubCommon\bin\Debug\netstandard2.0\PubSubCommon.dll
-C:\Users\Matt\Documents\GitHub\PubSub\PubSubCommon\bin\Debug\netstandard2.0\PubSubCommon.pdb
-C:\Users\Matt\Documents\GitHub\PubSub\PubSubCommon\obj\Debug\netstandard2.0\PubSubCommon.csprojAssemblyReference.cache
-C:\Users\Matt\Documents\GitHub\PubSub\PubSubCommon\obj\Debug\netstandard2.0\PubSubCommon.AssemblyInfoInputs.cache
-C:\Users\Matt\Documents\GitHub\PubSub\PubSubCommon\obj\Debug\netstandard2.0\PubSubCommon.AssemblyInfo.cs
-C:\Users\Matt\Documents\GitHub\PubSub\PubSubCommon\obj\Debug\netstandard2.0\PubSubCommon.csproj.CoreCompileInputs.cache
-C:\Users\Matt\Documents\GitHub\PubSub\PubSubCommon\obj\Debug\netstandard2.0\PubSubCommon.dll
-C:\Users\Matt\Documents\GitHub\PubSub\PubSubCommon\obj\Debug\netstandard2.0\PubSubCommon.pdb
