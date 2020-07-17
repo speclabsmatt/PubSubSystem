@@ -17,9 +17,9 @@ Both publishers and subscribers can type /quit to exit.
 
 Subscribers can run commands to subscribe, unsubscribe, list all available topics, and list currently subscribed topics.
 The commands are as follows:
-/subscribe <topic>
-/unsubscribe <topic>
-/alltopics
-/subscribedtopics
+1. /subscribe <topic>
+2. /unsubscribe <topic>
+3. /alltopics
+4. /subscribedtopics
 
 Typing an invalid command will display a list of all commands.
