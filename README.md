@@ -22,4 +22,4 @@ The commands are as follows:
 3. /alltopics
 4. /subscribedtopics
 
-Typing an invalid command will display a list of all commands.
+Typing /help will display a list of all commands.
