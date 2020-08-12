@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System; // Unused
+using System.Collections.Generic; // Unused
+using System.Text; // Unused
 
 using System.Net.Sockets;
-using Microsoft.VisualBasic.CompilerServices;
+using Microsoft.VisualBasic.CompilerServices; // Unused
 
 namespace PubSub_Broker
 {
@@ -19,12 +19,12 @@ namespace PubSub_Broker
             topic = t;
         }
 
-        public string GetTopic()
+        public string GetTopic() // good place to use an expression-bodied function, in my opinion
         {
             return topic;
         }
 
-        public TcpClient GetTcpClient()
+        public TcpClient GetTcpClient() // this one, too
         {
             return tcpClient;
         }

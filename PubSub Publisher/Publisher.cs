@@ -1,11 +1,11 @@
 ﻿using PubSubCommon;
 using System;
-
+// There's a newline here. I have never seen that in C# but you might have a reason for including it for logical separation.
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PubSub_Publisher
+namespace PubSub_Publisher // PascalCasing is generally standard for C# namespaces: https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/names-of-namespaces
 {
     class Publisher
     {

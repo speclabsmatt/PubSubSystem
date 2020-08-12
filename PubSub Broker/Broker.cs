@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Linq;
-using System.Text;
+using System.Linq; // Unused
+using System.Text; // Unused
 
 using System.Net;
 using System.Net.Sockets;
-using System.Collections;
-using System.Diagnostics.Contracts;
-using System.Runtime.InteropServices;
+using System.Collections; // Unused
+using System.Diagnostics.Contracts; // Unused
+using System.Runtime.InteropServices; // Unused
 using PubSubCommon;
-using System.Net.Http;
+using System.Net.Http; // Unused
 
 namespace PubSub_Broker
 {
-    class Broker
+    class Broker // usually a good idea to explicitly define the access level of each class for consistency
     {
-        private static TcpListener Server;
+        private static TcpListener Server; // usually private class variables follow the _variableName convention: 
 
         private static List<Publisher> PUBLISHERS = new List<Publisher>();
         private static List<Subscriber> SUBSCRIBERS = new List<Subscriber>();
@@ -25,7 +25,7 @@ namespace PubSub_Broker
 
         static async Task Main(string[] args)
         {
-
+            // extra newlines
             Server = new TcpListener(IPAddress.Any, 9999);
 
             await ListenForConnectionsAsync();
@@ -49,8 +49,8 @@ namespace PubSub_Broker
 
         private static async void HandleClient(TcpClient client)
         {
-            
-
+            // two extra newlines
+            //
             var stream = client.GetStream();
             var clientType = await stream.ReadStringAsync();
 
@@ -159,6 +159,9 @@ namespace PubSub_Broker
                 {
                     case "subscribe":
                     case "sub":
+                        // The code here is already quite deeply nested. Adding ifs into the case statements adds even more nesting.
+                        // Usually at this point, it is a good time to think about splitting off portions of this logic into new 
+                        // functions. You could have a class set aside for parsing commands, or a set of static functions defined elsewhere.
                         if (cmd.Length < 2)
                         {
                             await subscriber.SendMessageAsync("That command requires an argument." +
@@ -253,7 +256,7 @@ namespace PubSub_Broker
 
             output = "";
 
-            int index = 0;
+            int index = 0; // this variable is never used
             while(list.Count > 2) {
                 output += list[0] + ", ";
                 list.RemoveAt(0);
